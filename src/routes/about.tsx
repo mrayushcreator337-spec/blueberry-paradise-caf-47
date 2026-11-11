@@ -1,0 +1,7 @@
+import { createFileRoute,Link } from '@tanstack/react-router';
+import { seo } from '@/lib/restaurant';
+import { PageTitle } from '@/components/site/page';
+import { Button } from '@/components/ui/button';
+import spread from '@/assets/spread.jpg';
+export const Route=createFileRoute('/about')({head:()=>seo('About','Blueberry Paradise is a restaurant, bakery and café at Masjid Chowk, Madhepura, Bihar. Where Taste Meets Love.'),component:About});
+function About(){return <main className="container-site pb-16"><PageTitle eyebrow="Madhepura, Bihar" title="Where Taste Meets Love"/><div className="grid items-center gap-10 py-12 md:grid-cols-2"><div><h2 className="text-3xl">Blueberry Paradise</h2><p className="mt-5 leading-relaxed text-muted-foreground">A restaurant and bakery at Masjid Chowk in Madhepura, with a menu spanning pizza, momos, sandwiches, noodles, coffee, shakes and sweet treats.</p><p className="mt-4 leading-relaxed text-muted-foreground">For a quick bite, something sweet or a celebration cake, explore the menu and connect with the restaurant to confirm your order.</p><Button asChild className="mt-7" variant="berry" size="lg"><Link to="/menu">Explore the menu</Link></Button></div><figure><img src={spread} alt="Illustrative spread of pizza and snacks" className="aspect-[4/3] w-full rounded-lg object-cover"/><figcaption className="mt-3 text-xs text-muted-foreground">Illustrative sample food photography.</figcaption></figure></div></main>;}
