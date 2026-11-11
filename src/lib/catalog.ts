@@ -27,7 +27,7 @@ export const cakeFlavours: Record<string,string> = {
 'Shape Cake / Semi Fondant':'₹1300 per kg. Custom shapes by enquiry.',
 };
 export const fallbackCategories: Category[] = groups.map(([slug,name,price_labels],i)=>({id:slug,slug,name,price_labels,description:null,sort_order:i,is_active:true}));
-export const fallbackItems: MenuItem[] = groups.flatMap(([slug,,,list])=>list.split(';').map((entry,i)=>{const [name,value]=entry.split(':');return {id:`${slug}-${i}`,category_id:slug,name,prices:value?value.split(',').map(Number):[],description:cakeFlavours[name]??null,is_available:true,is_featured:false,image_url:null,sort_order:i};}));
+export const fallbackItems: MenuItem[] = groups.flatMap(([slug,,,list])=>list.split(';').map((entry,i)=>{const [name='',value]=entry.split(':');return {id:`${slug}-${i}`,category_id:slug,name,prices:value?value.split(',').map(Number):[],description:cakeFlavours[name]??null,is_available:true,is_featured:false,image_url:null,sort_order:i};}));
 export function priceLabel(item: MenuItem, category?: Category) {
  if (!item.prices.length) return 'Ask for price';
  if (item.name === 'Shape Cake / Semi Fondant') return '₹1300 / kg';

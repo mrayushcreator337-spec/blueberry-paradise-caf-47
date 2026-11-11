@@ -47,7 +47,7 @@ const highlights = [
 function Index() {
   const {data} = useSuspenseQuery(contentQuery);
   const announcement = data.settings.find(s=>s.key==='announcement')?.value;
-  const notice = announcement && typeof announcement==='object' && !Array.isArray(announcement) && announcement.active===true && typeof announcement.text==='string' ? announcement.text : '';
+  const notice = announcement && typeof announcement==='object' && !Array.isArray(announcement) && announcement['active']===true && typeof announcement['text']==='string' ? announcement['text'] : '';
   return (
     <main>
       {notice && <p className="bg-berry px-5 py-3 text-center text-sm text-berry-foreground">{notice}</p>}
