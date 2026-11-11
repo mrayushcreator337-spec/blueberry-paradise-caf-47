@@ -54,7 +54,7 @@
 }
 
 :root {
-  --radius: 0.875rem;
+  --radius: 0.5rem;
   --navy: oklch(0.27 0.07 262);
   --navy-deep: oklch(0.2 0.055 262);
   --navy-foreground: oklch(0.96 0.02 85);
@@ -115,7 +115,7 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
   }
 }
 
@@ -135,7 +135,7 @@
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.22em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 @utility container-site {
@@ -159,3 +159,9 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+.field { display: block; width: 100%; border: 1px solid var(--input); background: var(--card); color: var(--foreground); border-radius: 6px; padding: 12px 14px; min-height: 46px; font: inherit; }
+.field:focus { outline: 2px solid var(--ring); outline-offset: 2px; }
+.form-label { display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600; }
+textarea.field { min-height: 100px; resize: vertical; }
+body { margin: 0; }
+input[type=radio], input[type=checkbox] { accent-color: var(--berry); }

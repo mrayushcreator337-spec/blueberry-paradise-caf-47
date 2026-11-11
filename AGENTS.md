@@ -28,3 +28,10 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Public content is loaded through a publishable-client server function and TanStack Query; reference fallback is used only on service failure, never to replace intentionally empty live content.
+- Keep the supplied menu in a client-safe reference catalog; seed through an explicit idempotent data operation, not page loads.
+- Cart state is browser-local, validated on restore, with unknown prices excluded from subtotal and checkout treated as an unconfirmed request.
+- Admin routes use the pathless authenticated gate; every protected operation also verifies the persisted admin role and relies on RLS, never browser role flags.
+- Admin roles are assigned only with owner approval; public first-user self-promotion is disabled to prevent account takeover.
+- Store contact, cake and order requests in the existing enquiries collection, differentiated by kind, to preserve the configured data model.
