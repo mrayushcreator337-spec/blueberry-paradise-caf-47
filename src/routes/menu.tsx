@@ -1,0 +1,8 @@
+import { createFileRoute,useNavigate } from '@tanstack/react-router';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { contentQuery } from '@/lib/content-query';
+import { seo } from '@/lib/restaurant';
+import { PageTitle,ContentError,ContentNotFound } from '@/components/site/page';
+import { MenuBrowser } from '@/components/site/menu-browser';
+export const Route=createFileRoute('/menu')({validateSearch:(s:Record<string,unknown>):{q?:string;category?:string}=>({q:typeof s.q==='string'?s.q.slice(0,100):undefined,category:typeof s.category==='string'?s.category:undefined}),loader:({context})=>context.queryClient.ensureQueryData(contentQuery),head:()=>seo('Menu','Explore pizza, momos, sandwiches, shakes, desserts and cakes with rupee prices. Request your order on WhatsApp.'),errorComponent:ContentError,notFoundComponent:ContentNotFound,component:MenuPage});
+function MenuPage(){const {data}=useSuspenseQuery(contentQuery);const search=Route.useSearch();const navigate=useNavigate({from:'/menu'});return <main className="container-site pb-12"><PageTitle eyebrow="Made for your cravings" title="The menu"><p>From the first bite to the last spoonful. Unclear prices are marked “Ask for price”.</p></PageTitle>{data.fallback&&<p role="status" className="mt-4 text-sm text-muted-foreground">Showing the supplied reference menu. Please confirm prices and availability.</p>}<MenuBrowser categories={data.categories} items={data.items} search={search.q??''} category={search.category??'all'} onSearch={q=>navigate({search:p=>({...p,q}),replace:true})} onCategory={category=>navigate({search:p=>({...p,category}),replace:true})}/></main>;}
