@@ -30,6 +30,7 @@ use the editor.
 <!-- LOVABLE:END -->
 
 - Public content is loaded through a publishable-client server function and TanStack Query; reference fallback is used only on service failure, never to replace intentionally empty live content.
+- Public server functions must remain usable without browser auth bindings; client auth middleware skips safely when absent, while protected functions reject missing credentials server-side.
 - Keep the supplied menu in a client-safe reference catalog; seed through an explicit idempotent data operation, not page loads.
 - Cart state is browser-local, validated on restore, with unknown prices excluded from subtotal and checkout treated as an unconfirmed request.
 - Admin routes use the pathless authenticated gate; every protected operation also verifies the persisted admin role and relies on RLS, never browser role flags.
