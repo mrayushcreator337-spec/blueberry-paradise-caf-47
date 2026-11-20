@@ -159,9 +159,12 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+/* Layered so Tailwind utilities (w-*, pl-*) can override these form defaults. */
+@layer components {
 .field { display: block; width: 100%; border: 1px solid var(--input); background: var(--card); color: var(--foreground); border-radius: 6px; padding: 12px 14px; min-height: 46px; font: inherit; }
 .field:focus { outline: 2px solid var(--ring); outline-offset: 2px; }
 .form-label { display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600; }
 textarea.field { min-height: 100px; resize: vertical; }
+}
 body { margin: 0; }
 input[type=radio], input[type=checkbox] { accent-color: var(--berry); }

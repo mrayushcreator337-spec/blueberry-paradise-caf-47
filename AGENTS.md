@@ -36,3 +36,5 @@ use the editor.
 - Admin routes use the pathless authenticated gate; every protected operation also verifies the persisted admin role and relies on RLS, never browser role flags.
 - Admin roles are assigned only with owner approval; public first-user self-promotion is disabled to prevent account takeover.
 - Store contact, cake and order requests in the existing enquiries collection, differentiated by kind, to preserve the configured data model.
+- Keep the generated `.env` tracked: it holds only browser-safe Cloud identifiers, and hosted builds need it or the browser client throws "Missing Supabase environment variable(s)"; never add secret values to it.
+- Menu items without an owner-supplied image_url render a neutral "photo coming soon" placeholder; never substitute stand-in food photos.
